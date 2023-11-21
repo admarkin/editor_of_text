@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog, font, colorchooser
-from tkinter import *
 from tkinter import ttk
+
 class FileMenu:
     def __init__(self, root, text_editor):
         self.root = root

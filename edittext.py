@@ -1,15 +1,13 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog, font, colorchooser
-from tkinter import *
 from tkinter import ttk
-
 
 
 class EditMenu:
     def __init__(self, root, text_editor):
         self.root = root
         self.text_editor = text_editor
-        self.menu = tk.Menu(self.root, tearoff= 0)
+        self.menu = tk.Menu(self.root, tearoff=0)
         self.menu.add_command(label="Вырезать", command=self.cut_text)
         self.menu.add_command(label="Копировать", command=self.copy_text)
         self.menu.add_command(label="Вставить", command=self.paste_text)
@@ -40,6 +38,7 @@ class EditMenu:
                 self.text_editor.tag_config(tk.SEL, background="blue")
             else:
                 messagebox.showinfo("Поиск", "Текст не найден.")
+
     def find_text(self):
         search_text = simpledialog.askstring("Найти", "Что хочешь найти?:")
         if search_text:
@@ -66,12 +65,13 @@ class EditMenu:
                 self.text_editor.delete("1.0", tk.END)
                 self.text_editor.insert("1.0", new_content)
 
+
 class Shrift_and_fone_change:
     def __init__(self, root, text_editor, font):
         self.root = root
         self.text_editor = text_editor
         self.font = font
-        self.menu = tk.Menu(self.root, tearoff = 0)
+        self.menu = tk.Menu(self.root, tearoff=0)
         self.menu.add_command(label="Шрифт", command=self.change_font)
         self.menu.add_command(label="Размер шрифта", command=self.change_font_size)
         self.menu.add_separator()
@@ -87,13 +87,16 @@ class Shrift_and_fone_change:
 
     def change_font_size(self):
         new_font = font.nametofont(self.text_editor.cget("font"))
-        font_size = simpledialog.askinteger("Размер шрифта", "Выбери размер шрифта", initialvalue=new_font.actual("size"))
+        font_size = simpledialog.askinteger("Размер шрифта", "Выбери размер шрифта",
+                                            initialvalue=new_font.actual("size"))
         if font_size:
             new_font.configure(size=font_size)
             self.text_editor.configure(font=new_font)
+
     def change_text_color(self):
         color = colorchooser.askcolor()[1]
         self.text_editor.config(fg=color)
+
     def change_fon_color(self):
         color = colorchooser.askcolor()[1]
         self.text_editor.config(bg=color)
